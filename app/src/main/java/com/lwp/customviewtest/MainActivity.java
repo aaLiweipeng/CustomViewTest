@@ -1,5 +1,6 @@
 package com.lwp.customviewtest;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
@@ -15,6 +16,7 @@ import com.lwp.customviewtest.CustomViews.CanvasTestView;
 import com.lwp.customviewtest.CustomViews.ClipRgnView;
 import com.lwp.customviewtest.CustomViews.CustomCircleView;
 import com.lwp.customviewtest.CustomViews.SpiderView;
+import com.lwp.customviewtest.CustomViews.ValueAnimatorTestView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -33,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
         initViews();
 
         //为了方便调试，定义此方法，输入不同的id，显示不同的自定义View
-        configCustomViews(3);
+        configCustomViews(4);
     }
 
     private void initViews() {
@@ -85,6 +87,18 @@ public class MainActivity extends AppCompatActivity {
                 });
 
                 ll_nextParent.addView(clipRgnView,layoutParams);
+                break;
+
+            case 4:
+                Button toTest = new Button(MainActivity.this);
+                toTest.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(MainActivity.this, ValueAnimatorTestView.class);
+                        startActivity(intent);
+                    }
+                });
+                ll_nextParent.addView(toTest,layoutParams);
                 break;
 
             default:
