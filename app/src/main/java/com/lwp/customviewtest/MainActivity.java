@@ -1,12 +1,18 @@
 package com.lwp.customviewtest;
 
+import android.animation.Animator;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.view.animation.BounceInterpolator;
+import android.view.animation.ScaleAnimation;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -15,6 +21,7 @@ import android.widget.Toast;
 import com.lwp.customviewtest.CustomViews.CanvasTestView;
 import com.lwp.customviewtest.CustomViews.ClipRgnView;
 import com.lwp.customviewtest.CustomViews.CustomCircleView;
+import com.lwp.customviewtest.CustomViews.LoadingImageView;
 import com.lwp.customviewtest.CustomViews.SpiderView;
 import com.lwp.customviewtest.CustomViews.ValueAnimatorTestView;
 
@@ -35,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
         initViews();
 
         //为了方便调试，定义此方法，输入不同的id，显示不同的自定义View
-        configCustomViews(4);
+        configCustomViews(6);
     }
 
     private void initViews() {
@@ -66,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
 
             case 2:
                 CustomCircleView customCircleView = new CustomCircleView(this);
-                ll_nextParent.addView(customCircleView,layoutParams);
+                ll_nextParent.addView(customCircleView, layoutParams);
                 break;
 
             case 3:
@@ -76,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
                 int heightPixels = outMetrics.heightPixels;
 
                 final ClipRgnView clipRgnView = new ClipRgnView(this);
-                clipRgnView.setDecodeSize(300,400);
+                clipRgnView.setDecodeSize(300, 400);
 
                 clipRgnView.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -86,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
 
-                ll_nextParent.addView(clipRgnView,layoutParams);
+                ll_nextParent.addView(clipRgnView, layoutParams);
                 break;
 
             case 4:
@@ -98,11 +105,37 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(intent);
                     }
                 });
-                ll_nextParent.addView(toTest,layoutParams);
+                ll_nextParent.addView(toTest, layoutParams);
+                break;
+
+            case 5:
+                LoadingImageView loadingImageView = new LoadingImageView(this);
+
+                ll_nextParent.addView(loadingImageView, layoutParams);
+                break;
+
+            case 6:
+                ImageView cameraStretchView = new ImageView(this);
+                cameraStretchView.setBackgroundResource(R.drawable.imagetest1);
+                ll_nextParent.addView(cameraStretchView, layoutParams);
+
+                ScaleAnimation scaleAnimation = getTheCameraStretchAnim();
+                cameraStretchView.startAnimation(scaleAnimation);
+
                 break;
 
             default:
         }
+    }
+
+    private ScaleAnimation getTheCameraStretchAnim() {
+        ScaleAnimation scaleAnimation = new ScaleAnimation(1.0f, 1.2f, 1.0f, 1.2f,
+                Animation.RELATIVE_TO_SELF, 0.5f,
+                Animation.RELATIVE_TO_SELF, 0.5f);
+        scaleAnimation.setFillAfter(true);
+        scaleAnimation.setInterpolator(new BounceInterpolator());
+        scaleAnimation.setDuration(6000);
+        return scaleAnimation;
     }
 
     //这个方法在ll_nextParent.setOnClickListener的onClick中调用
@@ -122,12 +155,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //这个方法加在initView中，测试canvas的存取
-    private void testTheCanvas(){
+    private void testTheCanvas() {
         ll_nextParent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 canvasTestView.setDrawId(canvasDrawId);
-                canvasDrawId ++ ;
+                canvasDrawId++;
             }
         });
 

@@ -36,7 +36,7 @@ public class ValueAnimatorTestView extends AppCompatActivity {
 
     private void startAnimationA() {
         ValueAnimator animator =  ValueAnimator.ofInt(0xffffff00, 0xff0000ff);
-        animator.setEvaluator(new ArgbEvaluator());
+        animator.setEvaluator(new ArgbEvaluator());//设置Evaluator
         animator.setDuration(3000);
 
         animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
