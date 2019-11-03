@@ -21,6 +21,8 @@ import android.widget.Toast;
 import com.lwp.customviewtest.CustomViews.CanvasTestView;
 import com.lwp.customviewtest.CustomViews.ClipRgnView;
 import com.lwp.customviewtest.CustomViews.CustomCircleView;
+import com.lwp.customviewtest.CustomViews.DialogActivity;
+import com.lwp.customviewtest.CustomViews.FallingBallActivity;
 import com.lwp.customviewtest.CustomViews.LoadingImageView;
 import com.lwp.customviewtest.CustomViews.SpiderView;
 import com.lwp.customviewtest.CustomViews.ValueAnimatorTestView;
@@ -42,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
         initViews();
 
         //为了方便调试，定义此方法，输入不同的id，显示不同的自定义View
-        configCustomViews(6);
+        configCustomViews(4);
     }
 
     private void initViews() {
@@ -97,12 +99,21 @@ public class MainActivity extends AppCompatActivity {
                 break;
 
             case 4:
+
+                //  测试  ValueAnimatorTestView
                 Button toTest = new Button(MainActivity.this);
                 toTest.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent intent = new Intent(MainActivity.this, ValueAnimatorTestView.class);
+//                        Intent intent = new Intent(MainActivity.this, ValueAnimatorTestView.class);
+
+//                        Intent intent = new Intent(MainActivity.this, DialogActivity.class);//测试弹出图片的dialog
+
+
+                        Intent intent = new Intent(MainActivity.this, FallingBallActivity.class);
+
                         startActivity(intent);
+
                     }
                 });
                 ll_nextParent.addView(toTest, layoutParams);
@@ -124,6 +135,11 @@ public class MainActivity extends AppCompatActivity {
 
                 break;
 
+            case 7:
+
+
+                break;
+
             default:
         }
     }
@@ -134,6 +150,8 @@ public class MainActivity extends AppCompatActivity {
                 Animation.RELATIVE_TO_SELF, 0.5f);
         scaleAnimation.setFillAfter(true);
         scaleAnimation.setInterpolator(new BounceInterpolator());
+
+
         scaleAnimation.setDuration(6000);
         return scaleAnimation;
     }

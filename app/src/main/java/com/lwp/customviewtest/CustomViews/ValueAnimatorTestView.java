@@ -5,11 +5,15 @@ import android.animation.ValueAnimator;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.AccelerateDecelerateInterpolator;
+import android.view.animation.AccelerateInterpolator;
 import android.widget.Button;
 import android.widget.TextView;
 
 import com.lwp.customviewtest.R;
+import com.lwp.customviewtest.Utils.CharEvaluator;
 import com.lwp.customviewtest.Utils.MyEvaluator;
+import com.lwp.customviewtest.Utils.MyInterpolator;
 
 public class ValueAnimatorTestView extends AppCompatActivity {
 
@@ -29,12 +33,48 @@ public class ValueAnimatorTestView extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 //                startAnimation();
-                startAnimationA();
+//                startAnimationArgbEvaluator();
+//                startAnimationTestInterpolator();
+                startAnimationTestCharEvaluator();
             }
         });
     }
 
-    private void startAnimationA() {
+    private void startAnimationTestCharEvaluator() {
+        ValueAnimator animator = ValueAnimator.ofObject(new CharEvaluator(), 'A', 'Z');
+
+        animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator animation) {
+                char text = (Character) animation.getAnimatedValue();
+                tv_text.setText(String.valueOf(text));
+            }
+        });
+
+        animator.setDuration(10000);
+        animator.setInterpolator(new AccelerateInterpolator());
+        animator.start();
+    }
+
+    private void startAnimationTestInterpolator() {
+        ValueAnimator animator =  ValueAnimator.ofInt(0, 400);
+
+        animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator animation) {
+                int curValue = (int)animation.getAnimatedValue();
+                tv_text.layout(tv_text.getLeft(),curValue,
+                        tv_text.getRight(), curValue+tv_text.getHeight());
+            }
+        });
+
+        animator.setDuration(1000);
+        animator.setInterpolator(new MyInterpolator());
+        animator.start();
+    }
+
+
+    private void startAnimationArgbEvaluator() {
         ValueAnimator animator =  ValueAnimator.ofInt(0xffffff00, 0xff0000ff);
         animator.setEvaluator(new ArgbEvaluator());//设置Evaluator
         animator.setDuration(3000);
@@ -66,4 +106,5 @@ public class ValueAnimatorTestView extends AppCompatActivity {
         animator.setEvaluator(new MyEvaluator());
         animator.start();
     }
+
 }
