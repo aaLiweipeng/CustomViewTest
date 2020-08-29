@@ -19,4 +19,10 @@
         <!-- 是否使用背景半透明 -->
     </style>
 
+    <style name="cstyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/colorPrimaryDark</item>
+    </style>
+
 </resources>

@@ -1,11 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/ll_nextParent"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ll_nextParent"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
+
+    <TextView
+        android:text="6666"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+    <com.lwp.customviewtest.CustomViews.TextView
+        app:lwpText="自定义文本opooppopopo"
+        app:lwpTextColor="@color/colorAccent"
+        app:lwpTextSize="20sp"
+        android:padding="2dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <!--<com.lwp.customviewtest.CustomViews.TextView-->
+        <!--app:lwpText="自定义文本opooppopopo"-->
+        <!--app:lwpTextColor="@color/colorAccent"-->
+        <!--app:lwpTextSize="20sp"-->
+        <!--android:padding="2dp"-->
+        <!--android:background="@android:color/holo_blue_light"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"/>-->
+    <!--<com.lwp.customviewtest.CustomViews.TextView-->
+        <!--android:text="6666666666666666666"-->
+        <!--style="@style/cstyle" />-->
+    <!--<com.lwp.customviewtest.CustomViews.TextView-->
+        <!--android:text="6666666666666666666"-->
+        <!--style="@style/cstyle" />-->
 
 </LinearLayout>

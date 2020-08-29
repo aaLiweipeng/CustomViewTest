@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--name 最好是自定义View的名字 TextView-->
+    <declare-styleable name="TextView">
+        <!--name 是名称，format是格式  color（颜色），string（文本），
+        dimension（sp,dp）【宽高、字体大小】 integer 数字
+        reference 资源（Drawable）-->
+        <attr name="lwpTextColor" format="color"/>
+        <attr name="lwpText" format="string"/>
+        <attr name="lwpTextSize" format="dimension"/>
+        <attr name="lwpMaxLength" format="integer"/>
+
+        <!--Background由View控制-->
+        <!--<attr name="lwpBackground" format="reference|color"/>-->
+
+        <!--枚举 外部写入的值是 number、text等 枚举量，
+        自定义View逻辑收到的是 1、2等实际的值-->
+        <attr name="lwpInputType">
+            <enum name="number" value="1"/>
+            <enum name="text" value="2"/>
+            <enum name="password" value="3"/>
+        </attr>
+    </declare-styleable>
+</resources>

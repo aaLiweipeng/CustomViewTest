@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TabHost;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -136,6 +137,16 @@ public class MainActivity extends AppCompatActivity {
                 break;
 
             case 7:
+                TextView textView = new TextView(this);
+
+                break;
+
+            case 8:
+
+
+                break;
+
+            case 9:
 
 
                 break;
