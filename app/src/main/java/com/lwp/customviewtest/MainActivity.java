@@ -1,6 +1,8 @@
 package com.lwp.customviewtest;
 
 import android.animation.Animator;
+import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,6 +12,7 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.BounceInterpolator;
+import android.view.animation.DecelerateInterpolator;
 import android.view.animation.ScaleAnimation;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -25,6 +28,7 @@ import com.lwp.customviewtest.CustomViews.CustomCircleView;
 import com.lwp.customviewtest.CustomViews.DialogActivity;
 import com.lwp.customviewtest.CustomViews.FallingBallActivity;
 import com.lwp.customviewtest.CustomViews.LoadingImageView;
+import com.lwp.customviewtest.CustomViews.QQStepView;
 import com.lwp.customviewtest.CustomViews.SpiderView;
 import com.lwp.customviewtest.CustomViews.ValueAnimatorTestView;
 
@@ -45,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
         initViews();
 
         //为了方便调试，定义此方法，输入不同的id，显示不同的自定义View
-        configCustomViews(4);
+        configCustomViews(8);
     }
 
     private void initViews() {
@@ -142,8 +146,21 @@ public class MainActivity extends AppCompatActivity {
                 break;
 
             case 8:
+                final QQStepView qqStepView = (QQStepView) findViewById(R.id.step_view);
+                qqStepView.setMaxStep(6000);
 
-
+                //属性动画
+                ValueAnimator valueAnimator = ObjectAnimator.ofFloat(0, 5678);
+                valueAnimator.setDuration(1000);
+                valueAnimator.setInterpolator(new DecelerateInterpolator());
+                valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                    @Override
+                    public void onAnimationUpdate(ValueAnimator animation) {
+                        float currentStep = (float) animation.getAnimatedValue();
+                        qqStepView.setProgress((int)currentStep);
+                    }
+                });
+                valueAnimator.start();
                 break;
 
             case 9:

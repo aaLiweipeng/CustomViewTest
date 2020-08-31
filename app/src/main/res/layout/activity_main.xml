@@ -8,19 +8,20 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
-        android:text="6666"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    <!--<TextView-->
+        <!--android:text="6666"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content" />-->
 
 
-    <com.lwp.customviewtest.CustomViews.TextView
-        app:lwpText="自定义文本opooppopopo"
-        app:lwpTextColor="@color/colorAccent"
-        app:lwpTextSize="20sp"
-        android:padding="2dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+    <!--<com.lwp.customviewtest.CustomViews.TextView-->
+        <!--app:lwpText="自定义文本opooppopopo"-->
+        <!--app:lwpTextColor="@color/colorAccent"-->
+        <!--app:lwpTextSize="20sp"-->
+        <!--android:padding="2dp"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"/>-->
+
     <!--<com.lwp.customviewtest.CustomViews.TextView-->
         <!--app:lwpText="自定义文本opooppopopo"-->
         <!--app:lwpTextColor="@color/colorAccent"-->
@@ -35,5 +36,15 @@
     <!--<com.lwp.customviewtest.CustomViews.TextView-->
         <!--android:text="6666666666666666666"-->
         <!--style="@style/cstyle" />-->
+
+    <com.lwp.customviewtest.CustomViews.QQStepView
+        android:id="@+id/step_view"
+        app:outerColor="@color/colorPrimary"
+        app:innerColor="@color/colorAccent"
+        app:borderWidth="15dp"
+        app:stepTextColor="@color/colorAccent"
+        app:stepTextSize="16sp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
 </LinearLayout>
